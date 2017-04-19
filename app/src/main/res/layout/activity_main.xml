@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!-- The Toolbar -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_main_activity"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <!-- The main gaming area -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7.0">
+        <!-- The MainView -->
+        <com.jianfenghou.tedroid.MainView
+            android:id="@+id/main_view_main_activity"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8.0" />
+
+        <!-- The information area -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4.0"
+            android:orientation="vertical">
+            <!-- The label highest -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Highest" />
+
+            <!-- The highest score -->
+            <TextView android:id="@+id/text_view_highest_score_main_activity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="1000" />
+
+            <!-- The label score -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Score" />
+
+            <!-- The score -->
+            <TextView android:id="@+id/text_view_score_main_activity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="0" />
+
+            <!-- The label level -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Level" />
+
+            <!-- The level -->
+            <TextView android:id="@+id/text_view_level_main_activity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="1" />
+
+            <!-- The Switch for the background music -->
+            <Switch android:id="@+id/switch_background_music_main_activity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Music"
+                android:gravity="center" />
+
+            <!-- The label next block -->
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Next"
+                android:background="@color/colorPrimary" />
+
+            <!-- The next block -->
+            <com.jianfenghou.tedroid.NextBlockView
+                android:id="@+id/next_block_view_main_activity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- The controlling area -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3.0">
+        <!-- The three buttons on the left -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4.0"
+            android:orientation="vertical">
+            <!-- The start/pause button -->
+            <Button android:id="@+id/button_start_or_pause_main_activity"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.0"
+                android:layout_margin="6dp"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="#FFFFFF"
+                android:textAllCaps="false"
+                android:text="Start" />
+
+            <!-- The reset button -->
+            <Button android:id="@+id/button_reset_main_activity"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.0"
+                android:layout_margin="6dp"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="#FFFFFF"
+                android:textAllCaps="false"
+                android:text="Reset" />
+
+            <!-- The exit button -->
+            <Button android:id="@+id/button_exit_main_activity"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.0"
+                android:layout_margin="6dp"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="#FFFFFF"
+                android:textAllCaps="false"
+                android:text="Exit" />
+        </LinearLayout>
+
+        <!-- The left button -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2.0">
+            <ImageButton android:id="@+id/image_button_left_main_activity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_arrow_left_black_24dp" />
+        </LinearLayout>
+
+        <!-- The rotate button and the down button -->
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2.0">
+            <!-- The rotate button -->
+            <ImageButton android:id="@+id/image_button_rotate_main_activity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/ic_rotate_black_24dp" />
+
+            <!-- The down button -->
+            <ImageButton android:id="@+id/image_button_down_main_activity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/ic_arrow_down_black_24dp" />
+        </RelativeLayout>
+
+        <!-- The right button -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2.0">
+            <ImageButton android:id="@+id/image_button_right_main_activity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_arrow_right_black_24dp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
