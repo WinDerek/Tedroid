@@ -246,6 +246,10 @@ public class MainActivity extends AppCompatActivity
                     break;
 
                 case RESET:
+                    // Reset the state of the game
+                    MainActivity.this.isStarted = false;
+                    MainActivity.this.isGoing = false;
+
                     // Reset the text of the button start or pause to "Start"
                     MainActivity.this.button_start_or_pause.setText("Start");
 
@@ -253,15 +257,8 @@ public class MainActivity extends AppCompatActivity
                     MainActivity.this.timer.cancel();
                     MainActivity.this.timer.purge();
 
-                    // Show the game over animation
+                    // Show the game over animation in the MainView
                     MainActivity.this.showGameOverAnimation();
-
-                    // Reset the MainView
-                    MainActivity.this.mainView.reset();
-
-                    // Reset the state of the game
-                    MainActivity.this.isStarted = false;
-                    MainActivity.this.isGoing = false;
 
                     // For the highest score
                     if (MainActivity.this.currentScore > MainActivity.this.highestScore) {
@@ -277,6 +274,16 @@ public class MainActivity extends AppCompatActivity
                     // Reset the current score of the game
                     MainActivity.this.currentScore = 0;
                     MainActivity.this.textView_score.setText("0");
+
+                    break;
+
+                case SET_ROW_ALL_FILLED:
+                    MainActivity.this.mainView.setRowAllFilledAt(message.getData().getInt("row"));
+
+                    break;
+
+                case RESET_MAIN_VIEW:
+                    MainActivity.this.mainView.reset();
 
                     break;
 
@@ -296,6 +303,8 @@ public class MainActivity extends AppCompatActivity
     private static final int PAUSE = 0x06;
     private static final int RESUME = 0x07;
     private static final int RESET = 0x08;
+    private static final int SET_ROW_ALL_FILLED = 0x09;
+    private static final int RESET_MAIN_VIEW = 0x0A;
 
     // The game modes
     private static final int TRAINING_MODE = 0x00;
@@ -715,14 +724,22 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void run() {
                 if (this.row >= 0) {
-                    MainActivity.this.mainView.setRowAllFilledAt(row);
+                    Message message = new Message();
+                    message.what = SET_ROW_ALL_FILLED;
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("row", row);
+                    message.setData(bundle);
+                    MainActivity.this.refreshHandler.sendMessage(message);
 
                     this.row--;
                 } else {
+                    // Reset the MainView
+                    MainActivity.this.refreshHandler.sendEmptyMessage(RESET_MAIN_VIEW);
+
                     MainActivity.this.timer.cancel();
                     MainActivity.this.timer.purge();
                 }
             }
-        }, 0, 300);
+        }, 0, 200);
     }
 }
